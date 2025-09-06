@@ -3,52 +3,40 @@ esmabykydn@gmail.com
 
 Veri Keşfi ve Ön İşleme Özeti
 
-1. Veri Yükleme
+1. Veri Keşfi
 
-"Talent_Academy_Case_DT_2025.xlsx" dosyası Pandas ile yüklendi.
+İlk olarak veri setinin yapısını inceledik. Veri setinde [satır sayısı] gözlem ve [sütun sayısı] sütun bulunuyor. Sütunlar arasında sayısal ve kategorik değişkenler yer alıyor. Sayısal sütunlar arasında “Yaş” ve “Tedavi Süresi” gibi değişkenler bulunurken, “Cinsiyet” gibi kategorik değişkenler de mevcut.
 
-İlk 5 satır, sütun isimleri, veri tipleri ve temel istatistikler incelendi.
+Eksik değerleri kontrol ettik ve bazı sütunlarda eksik veri olduğunu gözlemledik. Bu eksik veriler daha sonra uygun yöntemlerle dolduruldu.
 
-Eksik değerler tespit edildi.
+Veri dağılımını anlamak için histogramlar oluşturduk. Sayısal değişkenlerin dağılımları, verinin genel eğilimini ve olası uç değerleri görmemizi sağladı. Cinsiyet gibi kategorik değişkenlerin dağılımını ise countplot ile inceledik; bu sayede erkek ve kadın gözlemlerinin sayısını kolayca görebildik.
 
-2. Veri Görselleştirme
+Sayısal değişkenler arasındaki ilişkiyi scatter plot ve korelasyon matrisi ile inceledik. Özellikle “Yaş” ve “Tedavi Süresi” arasındaki ilişkiyi görselleştirdik ve veri setindeki değişkenlerin birbirleriyle olan bağlantılarını gözlemledik.
 
-Histogramlar: Sayısal sütunların dağılımı.
+2. Veri Ön İşleme
 
-Countplot: "Cinsiyet" dağılımı.
+EDA sürecinden sonra veriyi modellemeye hazırlamak için çeşitli ön işleme adımları uyguladık:
 
-Scatterplot: "Yaş" ve "TedaviSuresi" ilişkisi.
+Sayısal ve Kategorik Sütunların Ayrılması:
+Sayısal ve kategorik değişkenler ayrılarak farklı işlemler uygulamak mümkün oldu.
 
-Korelasyon matrisi: Sayısal değişkenler arasındaki korelasyon.
+Eksik Değerlerin Doldurulması:
 
-3. Veri Ön İşleme
+Sayısal sütunlarda eksik değerler medyan ile dolduruldu.
 
-Sütunların ayrılması
+Kategorik sütunlarda eksik değerler ise en sık görülen değerle tamamlandı.
 
-Sayısal: int64, float64
+Sayısal Verilerin Standardize Edilmesi:
+Sayısal veriler StandardScaler ile ölçeklendirildi. Böylece değişkenler aynı ölçeğe getirilerek modellemelerde tutarlılık sağlandı.
 
-Kategorik: object, category
+Kategorik Verilerin Dönüştürülmesi:
+Kategorik değişkenler OneHotEncoder ile sayısal forma dönüştürüldü. Bu sayede modeller kategorik değişkenleri de anlayabilecek hale geldi.
 
-Eksik değerlerin doldurulması
+3. Sonuç
 
-Sayısal: Medyan
-
-Kategorik: En sık değer
-
-Sayısal verilerin ölçeklendirilmesi
-
-StandardScaler ile standartlaştırıldı.
-
-Kategorik verilerin kodlanması
-
-OneHotEncoder ile sayısal hale getirildi.
-
-Dummy değişken tuzağı önlendi (drop='first').
-
-4. Sonuç
-
-Veri temizlendi ve modellemeye hazır.
+Sonuç olarak veri seti, eksik değerler doldurulmuş, sayısal değişkenler ölçeklendirilmiş ve kategorik değişkenler sayısal formata çevrilmiş olarak modellemeye hazır hale getirildi. EDA sürecinde veri dağılımları, değişkenler arası ilişkiler ve olası anormallikler gözlemlenmiş oldu.
 
 Eksik değerler giderildi, sayısal veriler standartlaştırıldı, kategorik veriler kodlandı.
 
 Son veri boyutu: (satır sayısı, sütun sayısı)
+
