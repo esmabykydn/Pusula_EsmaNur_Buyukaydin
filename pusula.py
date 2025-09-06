@@ -7,15 +7,17 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 df = pd.read_excel("Talent_Academy_Case_DT_2025.xlsx")
 
+print("İlk 5 satır:", df.head())
 print("Veri boyutu:", df.shape)
+print("Sütun isimleri:", df.columns)
 print("\nSütunlar ve veri tipleri:")
 df.info()  
-
 print("\nTemel istatistikler:\n", df.describe())
+print("Veri tipleri:", df.dtypes) 
 print("\nEksik değerler:\n", df.isnull().sum())
 
 
-# Histogramlar
+# Histogram grafiği
 df.hist(figsize=(12, 10), bins=20)
 plt.show()
 
@@ -23,18 +25,12 @@ plt.show()
 sns.countplot(data=df, x="Cinsiyet") 
 plt.show()
 
-
-#İki değişken arasındaki ilişkileri görselleştir
-# Scatter plot örneği
+# Scatter plot
 sns.scatterplot(data=df, x='Yas', y='TedaviSuresi')
 plt.show()
 
-
-#Korelasyon matrisi ve heatmap
-
-numerik_df = df.select_dtypes(include=['int64', 'float64'])
-
 # Korelasyon matrisi
+numerik_df = df.select_dtypes(include=['int64', 'float64'])
 sns.heatmap(numerik_df.corr(), annot=True, cmap='coolwarm')
 plt.show()
 
@@ -46,16 +42,19 @@ cat_cols = df.select_dtypes(include=['object']).columns
 df[num_cols] = SimpleImputer(strategy='median').fit_transform(df[num_cols])
 df[cat_cols] = SimpleImputer(strategy='most_frequent').fit_transform(df[cat_cols])
 
-#Kategorik verileri sayısala çevirme (OneHotEncoder)
-ohe = OneHotEncoder(sparse_output=False, drop='first')  # eski 'sparse' yerine 'sparse_output'
-encoded = ohe.fit_transform(df[cat_cols])
-encoded_df = pd.DataFrame(encoded, columns=ohe.get_feature_names_out(cat_cols))
-df = pd.concat([df.drop(cat_cols, axis=1), encoded_df], axis=1)
-
 # Sayısal verileri standardize etme
 df[num_cols] = StandardScaler().fit_transform(df[num_cols])
 
-# Temizlenmiş veri hazır
+# Kategorik verileri OneHotEncoder ile dönüştürme
+ohe = OneHotEncoder(sparse_output=False, drop='first')
+encoded = ohe.fit_transform(df[cat_cols])
+encoded_df = pd.DataFrame(encoded, columns=ohe.get_feature_names_out(cat_cols), index=df.index)
+
+# Kategorik sütunları çıkarma ve yeni sütunları ekleme
+df = pd.concat([df.drop(cat_cols, axis=1), encoded_df], axis=1)
+
+# Sonuç
 print("Veri temizlendi ve modellemeye hazır.")
 print("Son veri boyutu:", df.shape)
+
 
