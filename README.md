@@ -38,5 +38,6 @@ Sonuç olarak veri seti, eksik değerler doldurulmuş, sayısal değişkenler ö
 
 Eksik değerler giderildi, sayısal veriler standartlaştırıldı, kategorik veriler kodlandı.
 
-Son veri boyutu: (satır sayısı, sütun sayısı)
+
+
 
