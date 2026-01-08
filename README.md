@@ -1,6 +1,3 @@
-ESMA NUR BÜYÜKAYDIN
-esmabykydn@gmail.com
-
 Veri Keşfi ve Ön İşleme Özeti
 
 1. Veri Keşfi
@@ -37,6 +34,7 @@ Kategorik değişkenler OneHotEncoder ile sayısal forma dönüştürüldü. Bu 
 Sonuç olarak veri seti, eksik değerler doldurulmuş, sayısal değişkenler ölçeklendirilmiş ve kategorik değişkenler sayısal formata çevrilmiş olarak modellemeye hazır hale getirildi. EDA sürecinde veri dağılımları, değişkenler arası ilişkiler ve olası anormallikler gözlemlenmiş oldu.
 
 Eksik değerler giderildi, sayısal veriler standartlaştırıldı, kategorik veriler kodlandı.
+
 
 
 
